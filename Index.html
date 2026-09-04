@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZRay — modular sculpting, modeling and painting for Windows</title>
+<meta name="description" content="ZRay is a modular digital content creation platform: ZBrush-class sculpting at 50M+ polygons, a modeling kernel, 2D paint and animation, texturing, and procedural simulation — built as independent libraries you can use alone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171a1d;
+    --graphite:#22262a;
+    --bone:#e6e1d8;
+    --ash:#9aa1a7;
+    --steel:#8fb3d1;
+    --steel-deep:#3f6a8a;
+    --max:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--bone);font-family:Manrope,system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+  .logo{font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none}
+  .logo span{color:var(--steel)}
+  nav a{text-decoration:none;color:var(--ash);margin-left:28px;font-weight:500}
+  nav a:hover,nav a:focus-visible{color:var(--bone)}
+  :focus-visible{outline:2px solid var(--steel);outline-offset:3px}
+
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding:56px 0 88px}
+  h1{font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0 0 24px}
+  .lede{font-size:20px;color:var(--ash);max-width:34ch;margin:0 0 36px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--bone);color:var(--ink);text-decoration:none;font-weight:700;padding:14px 22px;border-radius:6px}
+  .cta:hover{background:#fff}
+  .cta.ghost{background:transparent;color:var(--bone);border:1px solid #3a4046;margin-left:12px}
+  .cta.ghost:hover{border-color:var(--steel)}
+
+  .sphere{width:100%;max-width:460px;justify-self:end;display:block}
+
+  section{padding:64px 0;border-top:1px solid #2b3035}
+  h2{font-size:30px;letter-spacing:-.025em;font-weight:800;margin:0 0 12px}
+  .sub{color:var(--ash);max-width:60ch;margin:0 0 40px}
+
+  .modules{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #2b3035}
+  .mod{padding:26px 24px;border-right:1px solid #2b3035;border-bottom:1px solid #2b3035}
+  .mod:nth-child(3n){border-right:0}
+  .mod:nth-last-child(-n+3){border-bottom:0}
+  .mod h3{margin:0 0 6px;font-size:18px;font-weight:700}
+  .mod p{margin:0;color:var(--ash);font-size:15px}
+  .mod.lead{background:var(--graphite)}
+  .mod.lead h3{color:var(--steel)}
+
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .facts strong{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+  .facts p{margin:0;color:var(--ash)}
+
+  footer{padding:40px 0 56px;color:var(--ash);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{text-decoration:none}
+
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;padding-top:24px}
+    .sphere{justify-self:start;max-width:320px;order:-1}
+    .modules{grid-template-columns:1fr}
+    .mod{border-right:0}
+    .mod:nth-last-child(-n+3){border-bottom:1px solid #2b3035}
+    .mod:last-child{border-bottom:0}
+    .facts{grid-template-columns:1fr;gap:24px}
+    nav a{margin-left:18px}
+  }
+  @media(prefers-reduced-motion:no-preference){
+    .sphere g.spin{transform-origin:200px 200px;animation:spin 60s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">Z<span>Ray</span></a>
+    <nav>
+      <a href="#modules">Modules</a>
+      <a href="#platform">Platform</a>
+      <a href="#download">Download</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="border-top:0">
+    <div>
+      <h1>Sculpt at fifty million polygons. Then keep going.</h1>
+      <p class="lede">ZRay is a modular creation platform for Windows. Sculpting, modeling, painting, texturing and simulation share one engine — and each one works on its own.</p>
+      <a class="cta" href="#download">Get the preview build</a>
+      <a class="cta ghost" href="#platform">How it's built</a>
+    </div>
+
+    <!-- Faceted matcap sphere: the sculpt look — flat facets, one soft light, no shadows -->
+    <svg class="sphere" viewBox="0 0 400 400" role="img" aria-label="A faceted sphere shaded with a single soft light">
+      <defs>
+        <radialGradient id="mc" cx="38%" cy="32%" r="70%">
+          <stop offset="0" stop-color="#d9e4ee"/>
+          <stop offset=".45" stop-color="#8fb3d1"/>
+          <stop offset="1" stop-color="#22303c"/>
+        </radialGradient>
+        <clipPath id="disc"><circle cx="200" cy="200" r="168"/></clipPath>
+      </defs>
+      <circle cx="200" cy="200" r="168" fill="url(#mc)"/>
+      <g class="spin" clip-path="url(#disc)" fill="none" stroke="#171a1d" stroke-opacity=".55" stroke-width="1.2">
+        <!-- latitude rings -->
+        <ellipse cx="200" cy="200" rx="168" ry="26"/>
+        <ellipse cx="200" cy="200" rx="168" ry="74"/>
+        <ellipse cx="200" cy="200" rx="168" ry="122"/>
+        <ellipse cx="200" cy="200" rx="168" ry="160"/>
+        <!-- longitude ribs -->
+        <ellipse cx="200" cy="200" rx="26" ry="168"/>
+        <ellipse cx="200" cy="200" rx="74" ry="168"/>
+        <ellipse cx="200" cy="200" rx="122" ry="168"/>
+        <ellipse cx="200" cy="200" rx="160" ry="168"/>
+        <line x1="200" y1="32" x2="200" y2="368"/>
+        <line x1="32" y1="200" x2="368" y2="200"/>
+      </g>
+      <!-- a single sculpted indent, the ZBrush "one dent" test -->
+      <ellipse cx="238" cy="150" rx="30" ry="18" fill="#2b3d4c" opacity=".7"/>
+      <ellipse cx="232" cy="145" rx="20" ry="10" fill="#c9d8e4" opacity=".45"/>
+    </svg>
+  </section>
+
+  <section id="modules">
+    <h2>One engine, separate tools</h2>
+    <p class="sub">Each module is modeled on the best tool in its class. Install what you use; nothing else loads.</p>
+    <div class="modules">
+      <div class="mod lead"><h3>Sculpt</h3><p>ZBrush-class organic sculpting. The viewport cost scales with screen pixels, not polygon count, so meshes past 50M stay responsive.</p></div>
+      <div class="mod"><h3>Model</h3><p>Polygon modeling with a modifier stack, on a kernel that handles wires, fins and non-manifold geometry.</p></div>
+      <div class="mod"><h3>Paint &amp; animate 2D</h3><p>Raster and vector painting with layers, plus bone-based 2D animation.</p></div>
+      <div class="mod"><h3>Texture</h3><p>Paint materials directly on the mesh, Substance-style.</p></div>
+      <div class="mod"><h3>Simulate</h3><p>A live procedural node graph that is the object — Houdini-style effects and geometry.</p></div>
+      <div class="mod"><h3>CAD</h3><p>Parametric objects that keep their own recipe and history.</p></div>
+    </div>
+  </section>
+
+  <section id="platform">
+    <h2>Built as a kit, not an app</h2>
+    <p class="sub">ZRay is a set of independent C++ libraries — UI, core, brush engine, layers, nodes, rigging — that depend downward only. Take one library into your own tool and you pay nothing for the rest. Any object can be converted between sculpt, editable mesh, parametric and procedural forms, and every attribute can be wired to any other, only when you ask for it.</p>
+    <div class="facts">
+      <div><strong>134M</strong><p>vertices stress-tested in a single sculpt mesh</p></div>
+      <div><strong>Sub-2 ms</strong><p>brush strokes at 50M polygons</p></div>
+      <div><strong>Vulkan</strong><p>on Windows today; the libraries carry no platform or backend dependency</p></div>
+    </div>
+  </section>
+
+  <section id="download">
+    <h2>Preview builds</h2>
+    <p class="sub">ZRay is in active development. Early builds are shared with testers; sign up to be notified when the next one lands.</p>
+    <a class="cta" href="mailto:hello@zray3d.com?subject=ZRay%20preview">Request access</a>
+  </section>
+
+  <footer>
+    <span>© 2026 ZRay</span>
+    <a href="mailto:hello@zray3d.com">hello@zray3d.com</a>
+  </footer>
+</div>
+</body>
+</html>
